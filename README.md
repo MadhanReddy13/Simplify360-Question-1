@@ -1,4 +1,4 @@
-# Simply360-Question-1
+# Simplify360-Question-1
 from collections import defaultdict, deque
 
 class Task:
