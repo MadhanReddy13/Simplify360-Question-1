@@ -1,4 +1,5 @@
-# Simplify360-Question-1
+# Simplify360 Question 1
+
 from collections import defaultdict, deque
 
 class Task:
@@ -19,6 +20,7 @@ def calculate_times(tasks):
         for dep in task.dependencies:
             graph[dep].append(task.name)
             in_degree[task.name] += 1
+
     queue = deque(task for task in tasks if in_degree[task] == 0)
     while queue:
         task_name = queue.popleft()
@@ -29,7 +31,7 @@ def calculate_times(tasks):
             in_degree[neighbor] -= 1
             if in_degree[neighbor] == 0:
                 queue.append(neighbor)
-                
+
     queue = deque(task for task in tasks if not graph[task])
     for task in tasks.values():
         task.latest_finish_time = task.earliest_finish_time
@@ -52,10 +54,12 @@ def main():
         'A': Task('A', 3, []),
         'B': Task('B', 2, ['A']),
         'C': Task('C', 4, ['A']),
-        'D': Task('D', 1, ['B','C']),
+        'D': Task('D', 1, ['B', 'C']),
     }
     
     earliest, latest = calculate_times(tasks)
     print(f"Earliest completion time: {earliest}")
     print(f"Latest completion time: {latest}")
-    
+
+if __name__ == "__main__":
+    main()
